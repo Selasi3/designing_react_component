@@ -27,7 +27,8 @@ function SpeakerImage({id, first, last}) {
     )
 }
 
-function SpeakerDemographics({first, last, bio, company, twitterHandle, favorite}) {
+function SpeakerDemographics({
+    first, last, bio, company, twitterHandle, favorite, onFavoriteToggle}) {
     return (
         <div className="speaker-info">
         <div className="d-flex justify-content-between mb-3">
@@ -35,7 +36,9 @@ function SpeakerDemographics({first, last, bio, company, twitterHandle, favorite
                 {first} {last}
             </h3>
         </div>
-        <SpeakerFavorite favorite ={favorite}/>
+        <SpeakerFavorite
+        favorite ={favorite}
+        onFavoriteToggle={onFavoriteToggle}/>
         <div>
             <p className="card-description">
                  {bio}
@@ -61,13 +64,13 @@ function SpeakerDemographics({first, last, bio, company, twitterHandle, favorite
 }
 
 
-function Speaker({speaker, showSessions}){
+function Speaker({speaker, showSessions, onFavoriteToggle}){
     const {id, first, last, sessions} = speaker;
     return(
         <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-sm-12 col-xs-12">
         <div className="card card-height p-4 mt-4">
         <SpeakerImage id={id} first={first} last={last} />
-        <SpeakerDemographics  {...speaker}/>
+        <SpeakerDemographics  {...speaker}  onFavoriteToggle={onFavoriteToggle}/>
 
         </div>
         {showSessions === true ?

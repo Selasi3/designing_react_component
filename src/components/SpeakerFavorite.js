@@ -1,7 +1,9 @@
-function SpeakerFavorite({favorite}){
+
+function SpeakerFavorite({favorite, onFavoriteToggle}){
     return (
         <div className ="action padB1">
-            <span>
+
+            <span  onClick = {onFavoriteToggle}>
                 <i className={
                     favorite === true ?
                     "fa fa-star orange":
