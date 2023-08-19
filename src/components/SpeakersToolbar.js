@@ -1,6 +1,5 @@
 import {useState} from 'react';
-function SpeakersToolbar({theme, setTheme}) {
-    const [showSessions,setShowSessions] = useState(true);
+function SpeakersToolbar({theme, setTheme, showSessions,setShowSessions}) {
     // const [theme, setTheme] = useState("light");
 
 return (

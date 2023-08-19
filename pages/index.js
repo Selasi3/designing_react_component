@@ -1,9 +1,9 @@
-import Speakers from "../src/components/Speakers";
+import App from "../src/components/App";
 import { data } from "../SpeakerData";
 
 const IndexPage = () => {
     return (
-      <Speakers data={data}/>
+      <App data={data}/>
     )
 }
 export default IndexPage;

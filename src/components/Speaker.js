@@ -1,4 +1,4 @@
-
+import SpeakerFavorite from "./SpeakerFavorite"
 
 function Session({title, room}) {
     return (
@@ -35,6 +35,7 @@ function SpeakerDemographics({first, last, bio, company, twitterHandle, favorite
                 {first} {last}
             </h3>
         </div>
+        <SpeakerFavorite favorite ={favorite}/>
         <div>
             <p className="card-description">
                  {bio}
@@ -60,7 +61,7 @@ function SpeakerDemographics({first, last, bio, company, twitterHandle, favorite
 }
 
 
-function Speaker({speaker}){
+function Speaker({speaker, showSessions}){
     const {id, first, last, sessions} = speaker;
     return(
         <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-sm-12 col-xs-12">
@@ -69,7 +70,8 @@ function Speaker({speaker}){
         <SpeakerDemographics  {...speaker}/>
 
         </div>
-        <Sessions sessions={sessions}/>
+        {showSessions === true ?
+        <Sessions sessions={sessions}/> : null}
 
     </div>
     )
