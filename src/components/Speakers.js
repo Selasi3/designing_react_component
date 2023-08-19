@@ -10,7 +10,7 @@ function Speakers(){
 
   return(
    <div className= {theme === "light" ? "container-fluid light" : "contaiiner-fluid dark"}>
-    <Header/>
+    <Header theme={theme}/>
     <SpeakersToolbar theme={theme} setTheme={setTheme}/>
     <SpeakersList data={data} />
 
