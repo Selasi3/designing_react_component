@@ -1,52 +1,34 @@
 import Speaker from "./Speaker"
-import { data } from "../../SpeakerData";
-import { useState, useEffect } from "react";
+import useRequestSpeakers, {REQUEST_STATUS} from "../hooks/useRequestSpeaker";
 
 function SpeakersList({showSessions }){
-    const [speakersData, setSpeakersData] = useState([]);
+    const {speakersData, requestStatus, error, onFavoriteToggle
+    } = useRequestSpeakers(2000);
 
-    const delay = (ms) => new Promise((resolve) => setTimeout(resolve,ms))
-
-
-    useEffect(() =>{
-        async function delayFunc(){
-        await delay(2000);
-        setSpeakersData(data);
-
+    if(requestStatus === REQUEST_STATUS.FAILURE){
+        return (
+            <div className="text-danger">
+                ERROR: <b>Loading Speaker Data Failed {error}</b>
+            </div>
+        )
     }
-    delayFunc();
-    }, []);
 
-
-    function onFavoriteToggle(id){
-        const speakersRecPrevious = speakersData.find(function (rec){
-            return rec.id ==id;
-        });
-        const speakerRecUpdated = {
-            ...speakersRecPrevious,
-            favorite: !speakersRecPrevious.favorite
-        };
-        const speakersDataNew = speakersData.map(function (rec) {
-            return rec.id === id ? speakerRecUpdated : rec;
-        });
-
-        setSpeakersData(speakersDataNew);
-    }
+    // if(requestStatus === REQUEST_STATUS.LOADING) return <div>Loading...</div>
     return (
         <div className="container speakers-list">
-            <div className="row">
-                {speakersData.map(function(speaker){
+                <div className="row">
+                    {speakersData.map(function(speaker){
 
-                    return <Speaker
-                    key={speaker.id}
-                    speaker={speaker}
-                    showSessions={showSessions}
-                    onFavoriteToggle={() => {
-                        onFavoriteToggle(speaker.id)
-                    }}/>
-                })}
+                        return <Speaker
+                        key={speaker.id}
+                        speaker={speaker}
+                        showSessions={showSessions}
+                        onFavoriteToggle={() => {
+                            onFavoriteToggle(speaker.id)
+                        }}/>
+                    })}
 
-            </div>
+                </div>
         </div>
     )
 }
