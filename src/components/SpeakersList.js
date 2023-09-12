@@ -25,8 +25,8 @@ function SpeakersList({showSessions }){
                         key={speaker.id}
                         speaker={speaker}
                         showSessions={showSessions}
-                        onFavoriteToggle={() => {
-                        updateRecord({...speaker, favorite: !speaker.favorite})                        }}/>
+                        onFavoriteToggle={(doneCallBack) => {
+                        updateRecord({...speaker, favorite: !speaker.favorite}, doneCallBack)                        }}/>
                     })}
 
                 </div>
